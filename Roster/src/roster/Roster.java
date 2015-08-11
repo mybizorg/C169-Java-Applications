@@ -20,18 +20,28 @@ public class Roster {
         System.out.println(students.length);
         
         for (int i = 0; i <students.length; i++) {
-            String a_student = students[i];
-            System.out.println(a_student);
+            String[] a_student = students[i].split(",");
+            
+            String id = a_student[0];
+            String firstname = a_student[1];
+            String lastname = a_student[2];
+            String email = a_student[3];
+            int age = Integer.parseInt(a_student[4]);
+            int grade1 = Integer.parseInt(a_student[5]);
+            int grade2 = Integer.parseInt(a_student[6]);
+            int grade3 = Integer.parseInt(a_student[7]);
+            System.out.println(grade1);
         }
-        //Run the roster method code
-        new Roster();
+        
+        ArrayList<Student> student_list = new ArrayList<>();
+
     }
     
     //Roster method
     public Roster() {
 
         //Define the array "student_list" to hold the split up "students" string
-        ArrayList<Student> student_list = new ArrayList<>();
+        
 
         ArrayList<Integer> integer_list = new ArrayList<>(0);
 
@@ -52,7 +62,8 @@ public class Roster {
             System.out.println("Integer List Item: " + value);
         }
     }  
-}
+
+} //end roster class
 
 //Create the Student class
 class Student {
@@ -66,4 +77,5 @@ class Student {
     int grade1;
     int grade2;
     int grade3;
-}
+
+} //end student class
