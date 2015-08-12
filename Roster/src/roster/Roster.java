@@ -44,49 +44,46 @@ public class Roster {
         }
 
     }
-    
-    //Roster method
-    public Roster() {
-
-        
-        
-
-        ArrayList<Integer> integer_list = new ArrayList<>(0);
-
-        integer_list.add(20);
-        integer_list.add(30);
-        integer_list.add(49);
-
-        //Set an elements value in the ArrayList: integer_list
-        integer_list.set(2, 50);
-
-        //Count all of the elements in the ArrayList: integer_list
-        int count = integer_list.size();
-        System.out.println("Count: " + count);
-
-        //Loop through all elements in the ArrayList: integer_list
-        for (int i = 0; i < integer_list.size(); i++) {
-            int value = integer_list.get(i);
-            System.out.println("Integer List Item: " + value);
-        }
-    }  
 
 } //end roster class
 
 //Create the Student class
 class Student {
+    
     //id, firstname, lastname and email are all strings
     String id;	
     String firstname;
     String lastname;
     String email;
+    
     //age, grade1, grade2 and grade3 are integers
     int age;
     int grade1;
     int grade2;
     int grade3;
     
-    public Student(String id, String firstname, String lastname, String email, int age, int grade1, int grade2, int grade3) {
     
+    //Define the Student method with the arguements of all the attributes
+    public Student(String id, String firstname, String lastname, String email, int age, int grade1, int grade2, int grade3) {
+        
+        //assign the values passed in to the attributes
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+
+        this.age = age;
+        this.grade1 = grade1;
+        this.grade2 = grade2;
+        this.grade3 = grade3;
     }
+    
+    //We need to define the toString method so when we print
+    //the object, it doesn't return an object but rather
+    //the desired attributes of the object. 
+    public String toString() {
+ 
+        return id + " First Name: " + firstname + " Last Name: " +  lastname +  " Age: " + age + " Grades: (" + grade1 + " " + grade2 + " " + grade3 + ")";
+    }
+    
 } //end student class
