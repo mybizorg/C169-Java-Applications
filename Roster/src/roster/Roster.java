@@ -19,7 +19,7 @@ public class Roster {
         "2,Suzan,Erickson,Erickson_1990@gmailcom,19,91,72,85",
         "3,Jack,Napoli,The_lawyer99yahoo.com,19,85,84,87",
         "4,Erin,Black,Erin.black@comcast.net,22,91,98,82",
-        "5,MyFirstName,MyLastName,myemail@address.com,31,1,2,3"};
+        "5,MyFirst,MyLast,email@example.edu,31,91,85,94"};
 
     // Define the array "student_list" to hold the split up "students" string
     static ArrayList<Student> student_list = new ArrayList<>();
@@ -42,7 +42,7 @@ public class Roster {
             int grade3 = Integer.parseInt(a_student[7]);
 
             // use the add method to add a student to the student_list ArrayList
-            add_student(studentID, firstname, lastname, studentEmail, studentAge, grade1, grade2, grade3);
+            add(studentID, firstname, lastname, studentEmail, studentAge, grade1, grade2, grade3);
         }
         
         // all of the method calls to generate the output
@@ -50,31 +50,29 @@ public class Roster {
         welcome();
         horizontal_rule(0,1);
         horizontal_rule(0,1);
-        System.out.println("Current Students");
+        //System.out.println("Current Students");
+        System.out.println("All Current Students");
         horizontal_rule(1,100);
         print_all();
         horizontal_rule(1,100);
-        System.out.println("Removing Student with Student ID of 3:");
-        remove_student(3);
-        horizontal_rule(1,39);
-        System.out.println("Removing Student with Student ID of 8:");
-        remove_student(8);
-        horizontal_rule(1,39);
-        System.out.println("Removing Student with Student ID of 3:");
-        remove_student(3);
-        horizontal_rule(1,39);
-        System.out.println("All Student Grades");
-        horizontal_rule(1,30);
-        print_grades();
-        horizontal_rule(1,30);
-        System.out.println("Average Grades for Each Student");
-        horizontal_rule(1,30);
-        print_average_grades();
-        horizontal_rule(1,43);
+        
+        //horizontal_rule(1,34);
+        //print_grades();
+        //horizontal_rule(1,34);
         System.out.println("Email Validation for Student Emails");
-        horizontal_rule(1,43);
+        horizontal_rule(1,58);
         check_for_invalid_emails();
-        horizontal_rule(1,43);
+        horizontal_rule(1,58);
+        System.out.println("Average Grades for Each Student");
+        horizontal_rule(1,39);
+        print_average_grades();
+        horizontal_rule(1,39);
+        System.out.println("Removing Student with Student ID of 3:");
+        remove(3);
+        horizontal_rule(1,39);
+        System.out.println("Removing Student with Student ID of 3:");
+        remove(3);
+        horizontal_rule(1,39);
     
     } // end the main method
     
@@ -105,7 +103,7 @@ public class Roster {
     } // end welcome message method
     
     // Method for adding a student to the ArrayList
-    public static void add_student(
+    public static void add(
                         int studentID, String firstname, String lastname, 
                         String emailAddress, int studentAge, int grade1, 
                         int grade2, int grade3) 
@@ -116,35 +114,27 @@ public class Roster {
                                 studentAge, grade1, grade2, grade3)
                                 ;
         
-        
         student_list.add(a_student);   
     } // end add student method
 
-    // Method to print all attributes for all students
-    public static void print_all() {
-        for (Student student : student_list) {
-            System.out.println(student);
-        }
-    } // end print all method
-    
-    // Method for getting grades of each student by studentID
-    public static int average_grades(int studentID) {
-        return student_list.get(studentID).get_grades_int() / 3;
-   
-    } // end print average grades method
-    
     public static void print_average_grades() {
         for (int i = 0; i < student_list.size(); i++) {
-            System.out.println(student_list.get(i).get_first_name() + "'s average grade is: " + average_grades(i));
+            System.out.println(student_list.get(i).get_first_name() + "'s average grade is: " + student_list.get(i).get_average_grades(i));
         }
-    } //end print average grades method
+    } // end print average grades method
     
-    // Method to print grades for all students
-    public static void print_grades() {
+    // Method to print data for all students
+    public static void print_all() {
         for (int i = 0; i < student_list.size(); i++) {
-            System.out.println(student_list.get(i).get_first_name() + "'s grades are: " + student_list.get(i).get_grades_array());
-        }
-    }  // end print grades method
+            System.out.println("Student ID: " + 
+                student_list.get(i).get_student_id() + "\t First Name: " + 
+                student_list.get(i).get_first_name() + "\t Last Name: " +  
+                student_list.get(i).get_last_name() +  "\t Age: " + 
+                student_list.get(i).get_student_age() + "\t Grades: " + 
+                student_list.get(i).get_grades_array() 
+                );     
+        } 
+    } 
     
     // Method to check existing emails for proper formatting
     public static void check_for_invalid_emails() {
@@ -154,13 +144,13 @@ public class Roster {
             if (student_email.contains("@") && student_email.contains(".")) {
                 if (student_email.contains(" ") ) {
                     System.out.print("***");
-                    System.out.println(student_list.get(i).get_first_name()+ "'s email <" + student_list.get(i).get_student_email() + "> address is incorrect");
+                    System.out.println(student_list.get(i).get_first_name()+ "'s email <" + student_list.get(i).get_student_email() + "> address is incorrect.");
                     System.out.print("***");
                 }
                 System.out.println("Email for " + student_list.get(i).get_first_name() + " <" + student_list.get(i).get_student_email() + "> is correct.");
             }
             else 
-                System.out.println(student_list.get(i).get_first_name()+ "'s email <" + student_list.get(i).get_student_email() + "> address is incorrect");
+                System.out.println(student_list.get(i).get_first_name()+ "'s email <" + student_list.get(i).get_student_email() + "> address is incorrect.");
         }
     }  // end check for invalid emails method
 
@@ -169,11 +159,11 @@ public class Roster {
      * returns error message if student is not found
      * parameters: studentID
     */
-    public static void remove_student(int studentID) {
+    public static void remove(int studentID) {
         for (int i = 0; i < student_list.size(); i++) {
             if (student_list.get(i).get_student_id() == (studentID)) {
                 student_list.remove(i);
-                System.out.println("Removing student: " + studentID);
+                System.out.println("Student " + studentID + " removed.");
                 return;
             }   
         }
