@@ -10,6 +10,7 @@ package roster;
 
 // Import Arrays utility to be used later.
 import java.util.Arrays;
+import static roster.Roster.student_list;
 
 // Create the Student Class
 public class Student {
@@ -46,7 +47,6 @@ public class Student {
         set_student_age(studentAge);
         set_grades_array(grade1, grade2, grade3);
         set_grades_int(grade1, grade2, grade3);
-
     }
     
     // Return the studentID
@@ -125,5 +125,22 @@ public class Student {
     public int get_average_grades(int studentID) {
         return get_grades_int() / 3;
     } 
+    
+    // Print function that takes string and prints a value
+    public static void print(int i) {
+        System.out.println("Student ID: " + 
+                Roster.student_list.get(i).get_student_id() + "\t First Name: " + 
+                Roster.student_list.get(i).get_first_name() + "\t Last Name: " +  
+                Roster.student_list.get(i).get_last_name() +  "\t Age: " + 
+                Roster.student_list.get(i).get_student_age() + "\t Grades: " + 
+                Roster.student_list.get(i).get_grades_array() 
+                );  
+    }
+            
+        
+        
+                 
+        
+    
     
 } // end student class
